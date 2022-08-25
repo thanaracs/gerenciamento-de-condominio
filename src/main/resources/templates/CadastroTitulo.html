@@ -3,11 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <title>Cadastro de Titulo</title>
-    <link rel="stylesheet" href="/css/argon-dashboard.min.css">
-
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<h1>cadastro de titulo</h1>
-<script src="/js/argon-dashboard.min.js"></script>
+<!--MENU-->
+    <nav class="navbar bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="/img/condominio.png" alt="" width="30" height="24">
+                Gerênciamento do Condomínio
+            </a>
+        </div>
+    </nav>
+
+    <div class="campo-div">
+    <form class="form-horizontal">
+        <h1>Novo titulo</h1>
+        <div class="mb-3 row">
+            <label for="camp-descricao" class="col-sm-2 col-form-label">Descrição: </label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="camp-descricao">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="camp-vencimento" class="col-sm-2 col-form-label">Data de vencimento: </label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="camp-vencimento">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="camp-valor" class="col-sm-2 col-form-label">Valor:</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="camp-valor">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="status" class="col-sm-2 control-label">Status</label>
+            <div class="col-sm-3">
+                <select class="form-control" id="status">
+                    <option>Pendente</option>
+                    <option>Recebido</option>
+                </select>
+            </div>
+        </div>
+    </form>
+        <br>
+        <button type="submit" class="btn btn-info col-sm-2">Salvar</button>
+    </div>
+    <script src="/js/bootstrap.min.js"></script>
 </body>
 </html>
