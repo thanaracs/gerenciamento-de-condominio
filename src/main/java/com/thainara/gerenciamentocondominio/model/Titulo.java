@@ -1,5 +1,8 @@
 package com.thainara.gerenciamentocondominio.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.NumberFormat;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -14,9 +17,12 @@ public class Titulo {
 
     private String descricao;
 
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     @Temporal(TemporalType.DATE)
     private Date dataVencimento;
 
+    //Casas decimais do valor após a virgula
+    @NumberFormat(pattern = "#,##")
     private BigDecimal valor;
 
     @Enumerated(EnumType.STRING)
