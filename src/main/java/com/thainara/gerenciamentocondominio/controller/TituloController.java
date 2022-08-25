@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/titulos")
 public class TituloController {
 
-    @RequestMapping("titulos/novo")
+    @RequestMapping("/novo")
     public String novo(){
         return "CadastroTitulo";
     }

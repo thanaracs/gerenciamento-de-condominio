@@ -7,32 +7,20 @@ import java.util.Objects;
 
 @Entity
 public class Titulo {
+
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
+
     private String descricao;
-    @Temporal(TemporalType.DATE) //salvando somente a data
+
+    @Temporal(TemporalType.DATE)
     private Date dataVencimento;
+
     private BigDecimal valor;
-    @Enumerated(EnumType.STRING) //salvar o valor pendente e recebido no banco de dados
+
+    @Enumerated(EnumType.STRING)
     private StatusTitulo status;
-
-    //gerado o equals and hascode do codigo
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Titulo titulo = (Titulo) o;
-        return Objects.equals(codigo, titulo.codigo);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(codigo);
-    }
-
-
 
     public Long getCodigo() {
         return codigo;
@@ -66,13 +54,37 @@ public class Titulo {
         this.valor = valor;
     }
 
-    public Long getId() {
-        return id;
+    public StatusTitulo getStatus() {
+        return status;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setStatus(StatusTitulo status) {
+        this.status = status;
     }
 
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Titulo other = (Titulo) obj;
+        if (codigo == null) {
+            if (other.codigo != null)
+                return false;
+        } else if (!codigo.equals(other.codigo))
+            return false;
+        return true;
+    }
 
 }
