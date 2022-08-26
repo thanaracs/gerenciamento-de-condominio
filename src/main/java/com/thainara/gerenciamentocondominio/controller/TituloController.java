@@ -43,4 +43,11 @@ public class TituloController {
     public List<StatusTitulo> todosStatusTitulo(){
         return Arrays.asList(StatusTitulo.values());
     }
+
+    //Controller de pesquisa de titulos
+    @RequestMapping
+    public String pesquisar(){
+
+        return "PesquisaTitulos";
+    }
 }
