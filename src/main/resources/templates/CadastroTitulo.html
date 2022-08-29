@@ -1,23 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"  th:fragment="modelheader">
+
 <head>
-    <meta charset="UTF-8"/>
     <title>Cadastro de título</title>
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-static-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">
-                    <img alt="Gerenciamento de Condominio" src="/img/condominio.png" style="width: 60px" />
-                </a>
-            </div>
-        </div>
-    </nav>
-
+<div th:insert="fragments/header :: modelheader"></div>
 <form class="form-horizontal" method="POST" action="/titulos" id="form">
     <!--Alerta-->
     <div class="alert alert-success" th:if="${!#strings.isEmpty(mensagem)}">
@@ -27,9 +16,10 @@ xmlns:th="http://www.thymeleaf.org">
     <!--Ficha de cadastros-->
     <div class="panel panel-default form-dados">
         <div class="panel-heading">
-            <h1 class="panel-title">Cadastro</h1>
+            <h1 class="panel-title titulo-panel">Cadastro</h1>
+            <a class="btn btn-link btn-link-panel" href="/titulos/">Pesquisar Titulo</a>
         </div>
-
+        <br><br><br>
         <div class="panel-body">
             <div class="form-group">
                 <label for="descricao" class="col-sm-2 control-label">Descrição</label>
@@ -66,7 +56,7 @@ xmlns:th="http://www.thymeleaf.org">
         </div>
     </div>
 </form>
-
+<div class="rodape" th:insert="fragments/footer :: modelfooter"></div>
 <script src="/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -1,27 +1,18 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"  th:fragment="modelheader">
+
 <head>
-    <meta charset="UTF-8"/>
     <title>Pesquisa de títulos</title>
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+
 </head>
-<body>
-    <!--NAVBAR-->
-    <nav class="navbar navbar-inverse navbar-static-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">
-                    <img alt="Gerenciamento de Condominio" src="/img/condominio.png" style="width: 60px" />
-                 </a>
-            </div>
-        </div>
-    </nav>
+<div th:insert="fragments/header :: modelheader"></div>
+
     <!--PAINEL-->
     <div class="panel panel-default form-dados">
-        <div class="panel-heading">
-            <h1 class="panel-title">Pesquisa de Títulos</h1>
+        <div class="panel-heading clearfix">
+            <h1 class="panel-title titulo-panel">Pesquisa de Títulos</h1>
+            <a class="btn btn-link btn-link-panel" href="/titulos/novo">Novo título</a>
         </div>
         <div class="panel-body">
             <table class="table table-bordered table-striped">
@@ -39,14 +30,11 @@
                     <tr>
                         <td colspan="6">Nenhum título foi encontrado</td>
                     </tr>
-<!--                    <tr th:each=""></tr>-->
+<!--<tr th:each=""></tr>-->
                 </tbody>
             </table>
 
         </div>
-
     </div>
-
-
-</body>
+<div class="rodape" th:insert="fragments/footer :: modelfooter"></div>
 </html>
