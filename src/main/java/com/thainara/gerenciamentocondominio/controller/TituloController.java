@@ -5,6 +5,8 @@ import com.thainara.gerenciamentocondominio.model.Titulo;
 import com.thainara.gerenciamentocondominio.repository.Titulos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,17 +26,20 @@ public class TituloController {
     public ModelAndView novo(){
         ModelAndView mv = new ModelAndView("CadastroTitulo");
         mv.addObject("todosStatusTitulo", StatusTitulo.values());
-
+        mv.addObject(new Titulo()); //criando objeto titulo para ser validado no método salvar
         return mv;
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView salvar(Titulo titulo){
-        //salvar no banco de dados
-//        System.out.println(">>> " + titulo.getDescricao());
-        titulos.save(titulo);
+    public ModelAndView salvar(@Validated Titulo titulo, Errors errors){
         ModelAndView mv = new ModelAndView("CadastroTitulo");
-        //adicionado mensagem de alert
+        //se der erro de validação, volta para a pagina cadastroTitulo
+        if (errors.hasErrors()){
+            return mv;
+        }
+        //salvar no banco de dados
+        titulos.save(titulo);
+        //adicionando mensagem de alert
         mv.addObject("mensagem", "Título salvo com sucesso!");
         return mv;
     }

@@ -7,10 +7,15 @@
 </head>
 <body>
 <div th:insert="fragments/header :: modelheader"></div>
-<form class="form-horizontal" method="POST" action="/titulos" id="form">
-    <!--Alerta-->
+<form class="form-horizontal" method="POST" action="/titulos" id="form" th:object="${titulo}">
+    <!--Alerta de cadastro com sucesso-->
     <div class="alert alert-success" th:if="${!#strings.isEmpty(mensagem)}">
         <span th:text="${mensagem}">Título salvo</span>
+    </div>
+    <div class="alert alert-danger" th:if="${#fields.hasAnyErrors()}"> <!--se o objeto titulo no forms tiver erro, renderiza essa parte-->
+        <div th:each="detailedError ${#fields.detailedErrors()}"> <!-- joga o erro na variavel detailedError-->
+            <span th:text="${detailedError.message}"></span> <!--Apresenta o erro na tela-->
+        </div>
     </div>
 
     <!--Ficha de cadastros-->
