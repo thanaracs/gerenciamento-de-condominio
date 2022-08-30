@@ -17,7 +17,7 @@ import java.util.List;
 @RequestMapping("/titulos")
 public class TituloController {
 
-    @Autowired //instaciar
+    @Autowired //instaciar repository no controller
     private Titulos titulos;
 
     @RequestMapping("/novo")
@@ -46,8 +46,10 @@ public class TituloController {
 
     //Controller de pesquisa de titulos
     @RequestMapping
-    public String pesquisar(){
-
-        return "PesquisaTitulos";
+    public ModelAndView pesquisar(){
+        List<Titulo> todosTitulos = titulos.findAll(); //retorna todos os titulos
+        ModelAndView mv = new ModelAndView("PesquisaTitulos");
+        mv.addObject("titulos", todosTitulos);
+        return mv;
     }
 }

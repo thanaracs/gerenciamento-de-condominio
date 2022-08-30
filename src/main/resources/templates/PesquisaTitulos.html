@@ -26,11 +26,25 @@
                         <th class="col-md-1"></th>
                     </tr>
                 </thead>
+                <!--VALORES DA TABELA-->
                 <tbody>
-                    <tr>
-                        <td colspan="6">Nenhum título foi encontrado</td>
+                    <tr th:each="titulo: ${titulos}">
+                        <td class="text-center" th:text="${titulo.codigo}">1</td>
+                        <td th:text="${titulo.descricao}"></td>
+                        <td class="text-center" th:text="${{titulo.dataVencimento}}"></td>
+                        <td class="text-center" th:text="|R$ ${{titulo.valor}}|"></td> <!--Concatenação-->
+                        <td class="text-center">
+                            <span class="badge rounded-pill " th:text="${titulo.status.descricao}"
+                            th:classappend="${titulo.pendente ? 'text-bg-warning' : 'text-bg-success'}">Success</span>
+                        </td>
+                        <td class="text-center" >
+
+                        </td>
                     </tr>
-<!--<tr th:each=""></tr>-->
+                    <tr>
+                        <!--lista de titulos for vazia / #lists - objeto utilitario -->
+                        <td colspan="6" th:if="${#lists.isEmpty(titulos)}">Nenhum título foi encontrado</td>
+                    </tr>
                 </tbody>
             </table>
 

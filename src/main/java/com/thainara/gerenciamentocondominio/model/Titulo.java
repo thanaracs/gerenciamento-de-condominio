@@ -1,5 +1,6 @@
 package com.thainara.gerenciamentocondominio.model;
 
+import jdk.jshell.Snippet;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
 
@@ -22,7 +23,7 @@ public class Titulo {
     private Date dataVencimento;
 
     //Casas decimais do valor após a virgula
-    @NumberFormat(pattern = "#,##")
+    @NumberFormat(pattern = "#,##0.00")
     private BigDecimal valor;
 
     @Enumerated(EnumType.STRING)
@@ -68,6 +69,10 @@ public class Titulo {
         this.status = status;
     }
 
+    //VERIFICANDO STATUS, SE PENDENTE, RETORNA TRUE;
+    public boolean isPendente(){
+        return StatusTitulo.PENDENTE.equals(this.status);
+    }
     @Override
     public int hashCode() {
         final int prime = 31;
