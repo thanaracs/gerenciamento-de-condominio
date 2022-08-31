@@ -13,7 +13,7 @@
         <span th:text="${mensagem}">Título salvo</span>
     </div>
     <div class="alert alert-danger" th:if="${#fields.hasAnyErrors()}"> <!--se o objeto titulo no forms tiver erro, renderiza essa parte-->
-        <div th:each="detailedError ${#fields.detailedErrors()}"> <!-- joga o erro na variavel detailedError-->
+        <div th:each="detailedError : ${#fields.detailedErrors()}"> <!-- joga o erro na variavel detailedError-->
             <span th:text="${detailedError.message}"></span> <!--Apresenta o erro na tela-->
         </div>
     </div>

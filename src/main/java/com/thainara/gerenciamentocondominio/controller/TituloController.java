@@ -8,10 +8,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.Arrays;
 import java.util.List;
 
@@ -31,10 +33,11 @@ public class TituloController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     public ModelAndView salvar(@Validated Titulo titulo, Errors errors){
         ModelAndView mv = new ModelAndView("CadastroTitulo");
-        //se der erro de validação, volta para a pagina cadastroTitulo
-        if (errors.hasErrors()){
+
+        if (errors.hasErrors()){//se der erro de validação, volta para a pagina cadastroTitulo
             return mv;
         }
         //salvar no banco de dados

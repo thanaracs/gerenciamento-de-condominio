@@ -1,14 +1,24 @@
 package com.thainara.gerenciamentocondominio.model;
 
-import com.sun.istack.NotNull;
-import jdk.jshell.Snippet;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.NumberFormat;
-
-import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.Objects;
+
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.NumberFormat;
 
 @Entity
 public class Titulo {
@@ -17,16 +27,18 @@ public class Titulo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
 
-
+    @NotBlank(message = "Informe a descrição do pagamento.")
+    @Size(max = 60, message = "A descrição não pode conter mais de 60 caracteres")
     private String descricao;
 
-
+    @NotNull(message = "Informe a data de vencimento.")
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     @Temporal(TemporalType.DATE)
     private Date dataVencimento;
 
-    //Casas decimais do valor após a virgula
-    @NotNull 
+    @NotNull(message = "Informe o valor")
+    @DecimalMin(value = "0.01", message = "Valor não pode ser menor que 0,01")
+    @DecimalMax(value = "9999999.99", message = "Valor não pode ser maior que 9.999.999,99")
     @NumberFormat(pattern = "#,##0.00")
     private BigDecimal valor;
 
@@ -73,10 +85,10 @@ public class Titulo {
         this.status = status;
     }
 
-    //VERIFICANDO STATUS, SE PENDENTE, RETORNA TRUE;
-    public boolean isPendente(){
+    public boolean isPendente() {
         return StatusTitulo.PENDENTE.equals(this.status);
     }
+
     @Override
     public int hashCode() {
         final int prime = 31;
